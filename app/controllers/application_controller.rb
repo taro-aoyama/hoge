@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # Deviseのログイン後のリダイレクト先をカスタマイズ
   def after_sign_in_path_for(resource)
-    dashboard_path
+    # resourceはcurrent_userに相当
+    user_dashboard_path
   end
 end

@@ -1,0 +1,27 @@
+<div class="container mx-auto mt-8">
+  <h1 class="text-3xl font-bold mb-6">施設管理者ダッシュボード</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- 管理施設数 -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">管理施設数</h2>
+      <p class="text-4xl font-bold text-purple-600"><%= @managed_facilities_count %></p>
+      <a href="#" class="text-purple-500 hover:underline mt-4 inline-block">管理施設一覧へ</a>
+    </div>
+
+    <!-- 承認待ち予約数 -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">承認待ちの予約</h2>
+      <p class="text-4xl font-bold text-orange-600"><%= @pending_reservations_count %></p>
+      <a href="#" class="text-orange-500 hover:underline mt-4 inline-block">予約承認へ</a>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <h2 class="text-2xl font-bold mb-4">最近の承認待ち予約</h2>
+    <!-- ここに最近の承認待ち予約一覧などを表示 -->
+    <div class="bg-white p-4 rounded-lg shadow-md">
+      <p>承認待ちの予約はありません。</p>
+    </div>
+  </div>
+</div>

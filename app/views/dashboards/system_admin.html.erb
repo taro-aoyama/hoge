@@ -1,0 +1,31 @@
+<div class="container mx-auto mt-8">
+  <h1 class="text-3xl font-bold mb-6">システム管理者ダッシュボード</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- 全ユーザー数 -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">全ユーザー数</h2>
+      <p class="text-4xl font-bold text-red-600"><%= @total_users_count %></p>
+    </div>
+
+    <!-- 全施設数 -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">全施設数</h2>
+      <p class="text-4xl font-bold text-indigo-600"><%= @total_facilities_count %></p>
+    </div>
+
+    <!-- 全予約数 -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">全予約数</h2>
+      <p class="text-4xl font-bold text-yellow-600"><%= @total_reservations_count %></p>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <h2 class="text-2xl font-bold mb-4">システム稼働状況</h2>
+    <!-- ここに稼働状況などを表示 -->
+    <div class="bg-white p-4 rounded-lg shadow-md">
+      <p>システムは正常に稼働しています。</p>
+    </div>
+  </div>
+</div>

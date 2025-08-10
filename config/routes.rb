@@ -4,6 +4,15 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   devise_for :users
-  resource :dashboard, only: [:show]
+
+  # ダッシュボードへのルーティング
+  get 'dashboard', to: 'dashboards#show', as: :user_dashboard
+  namespace :dashboards do
+    get :general_user
+    get :facility_manager
+    get :system_admin
+  end
+
+  # ログイン後のリダイレクト先をダッシュボードに設定
   root to: 'dashboards#show'
 end

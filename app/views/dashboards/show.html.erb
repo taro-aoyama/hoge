@@ -1,7 +1,0 @@
-<% if current_user.general_user? %>
-  <%= render 'general_user_dashboard' %>
-<% elsif current_user.facility_manager? %>
-  <%= render 'facility_manager_dashboard' %>
-<% elsif current_user.system_admin? %>
-  <%= render 'system_admin_dashboard' %>
-<% end %>
