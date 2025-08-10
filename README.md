@@ -191,7 +191,7 @@ docker compose logs web -f
 
 ### 開発フェーズ
 1. **Phase 1**: 基盤機能 (Issues #22-23)
-2. **Phase 2**: 施設管理 (Issues #24-26)  
+2. **Phase 2**: 施設管理 (Issues #24-26)
 3. **Phase 3**: 通常予約 (Issues #27-29)
 4. **Phase 4**: 抽選機能 (Issues #30-34)
 5. **Phase 5**: 追加機能 (Issues #35-39)
@@ -255,10 +255,6 @@ yarn install
 rails tmp:clear
 ```
 
-## 📄 ライセンス
-
-このプロジェクトはMITライセンスの下で公開されています。
-
 ## 🤝 コントリビューション
 
 1. このリポジトリをフォーク
@@ -267,7 +263,5 @@ rails tmp:clear
 4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
 5. Pull Requestを作成
 
-## 📞 サポート
-
-- GitHub Issues: https://github.com/taro-aoyama/hoge/issues
+## その他
 - Documentation: [LOCAL_DEVELOPMENT.md](./LOCAL_DEVELOPMENT.md)
