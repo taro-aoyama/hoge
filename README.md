@@ -41,6 +41,7 @@ docker compose exec web rails db:seed
 
 #### 2. アクセス
 - **アプリケーション**: http://localhost:3001
+- **データベース管理**: http://localhost:8080 (Adminer)
 - **データベース**: localhost:5433 (外部接続用)
 
 #### 3. よく使うコマンド
@@ -53,6 +54,9 @@ docker compose exec web rails console
 
 # マイグレーション
 docker compose exec web rails db:migrate
+
+# データベース管理画面アクセス
+open http://localhost:8080
 
 # コンテナ再起動
 docker compose restart web
@@ -107,6 +111,23 @@ yarn build --watch
 | 会議室管理者 | meeting_manager@example.com | password123 |
 | ホール管理者 | hall_manager@example.com | password123 |
 | 一般ユーザー | user1@example.com ~ user5@example.com | password123 |
+
+### 🗄️ データベース管理
+
+Docker環境では、**Adminer**を使用してブラウザからデータベースを管理できます：
+
+- **URL**: http://localhost:8080
+- **サーバー**: `db` (自動入力)
+- **ユーザー名**: `postgres`
+- **パスワード**: `password`
+- **データベース**: `myapp_development`
+
+**Adminerの特徴:**
+- 🎨 ダークテーマ対応
+- 📊 テーブル別アイコン表示
+- 🔍 SQLクエリ履歴
+- 📱 レスポンシブ対応
+- 🏗️ コアテーブルとシステムテーブルの分類表示
 
 ## 🏢 機能概要
 
@@ -215,6 +236,10 @@ docker compose up -d
 
 # データベース接続エラー
 docker compose exec web rails db:reset
+
+# Adminerにアクセスできない場合
+docker compose restart adminer
+docker compose logs adminer
 ```
 
 ### ローカル環境
