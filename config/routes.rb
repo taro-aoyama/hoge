@@ -4,5 +4,11 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   devise_for :users
+
+  authenticated :user do
+    root to: 'reservations#index', as: :authenticated_root
+    resources :reservations, only: [:index]
+  end
+
   root to: redirect('/users/sign_in')
 end

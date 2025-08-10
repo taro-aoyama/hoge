@@ -1,9 +1,3 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  user: one
-  facility: one
-
-two:
-  user: two
-  facility: two
+manager_for_facility1:
+  user: facility_manager
+  facility: facility1
