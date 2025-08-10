@@ -1,0 +1,26 @@
+<h1>施設一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>施設名</th>
+      <th>説明</th>
+      <th>場所</th>
+      <th>定員</th>
+      <th>時間料金</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @facilities.each do |facility| %>
+      <tr>
+        <td><%= facility.name %></td>
+        <td><%= facility.description %></td>
+        <td><%= facility.location %></td>
+        <td><%= facility.capacity %></td>
+        <td><%= facility.hourly_rate %></td>
+        <td><%= link_to '予約する', new_facility_reservation_path(facility) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

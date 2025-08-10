@@ -1,0 +1,40 @@
+<h1>予約が完了しました</h1>
+
+<p>以下の内容で予約を受け付けました。承認をお待ちください。</p>
+
+<div>
+  <strong>施設名:</strong>
+  <%= @reservation.facility.name %>
+</div>
+
+<div>
+  <strong>予約者:</strong>
+  <%= @reservation.user.email %>
+</div>
+
+<div>
+  <strong>開始時刻:</strong>
+  <%= @reservation.start_time %>
+</div>
+
+<div>
+  <strong>終了時刻:</strong>
+  <%= @reservation.end_time %>
+</div>
+
+<div>
+  <strong>利用目的:</strong>
+  <%= @reservation.purpose %>
+</div>
+
+<div>
+  <strong>合計料金:</strong>
+  <%= @reservation.total_fee %>円
+</div>
+
+<div>
+  <strong>ステータス:</strong>
+  <%= @reservation.status_i18n %>
+</div>
+
+<%= link_to '施設一覧に戻る', facilities_path %>
