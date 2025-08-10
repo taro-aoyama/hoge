@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   devise_for :users
-  root to: redirect('/users/sign_in')
+  resource :dashboard, only: [:show]
+  root to: 'dashboards#show'
 end
