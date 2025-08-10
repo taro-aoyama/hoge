@@ -1,0 +1,34 @@
+ja:
+  activerecord:
+    models:
+      reservation: 予約
+    attributes:
+      reservation:
+        facility: 施設
+        start_time: 開始日時
+        end_time: 終了日時
+        purpose: 利用目的
+        total_fee: 合計料金
+        status: ステータス
+  enums:
+    reservation:
+      status:
+        pending: 承認待ち
+        approved: 承認済み
+        rejected: 拒否
+        cancelled: キャンセル
+  helpers:
+    submit:
+      create: 登録する
+      update: 更新する
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%m/%d %H:%M"
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."

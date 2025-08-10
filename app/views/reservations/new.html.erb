@@ -1,0 +1,59 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-6">施設予約作成</h1>
+
+  <%= form_with(model: @reservation, url: confirm_reservations_path, method: :post, "data-controller": "reservation-form") do |form| %>
+    <% if @reservation.errors.any? %>
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <strong class="font-bold">エラーが発生しました:</strong>
+        <ul>
+          <% @reservation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-4">
+      <%= form.label :facility_id, "施設", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.collection_select :facility_id, @facilities, :id, :name, { prompt: "施設を選択してください" }, {
+        class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+        "data-action": "change->reservation-form#calculateFee",
+        "data-reservation-form-target": "facility"
+      } %>
+    </div>
+
+    <div class="flex flex-wrap -mx-3 mb-4">
+      <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
+        <%= form.label :start_time, "開始日時", class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.datetime_local_field :start_time, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", "data-action": "change->reservation-form#calculateFee", "data-reservation-form-target": "startTime" %>
+      </div>
+      <div class="w-full md:w-1/2 px-3">
+        <%= form.label :end_time, "終了日時", class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.datetime_local_field :end_time, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", "data-action": "change->reservation-form#calculateFee", "data-reservation-form-target": "endTime" %>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :purpose, "利用目的", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_area :purpose, rows: 4, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold">概算料金</h3>
+      <p class="text-2xl font-bold" data-reservation-form-target="totalFee">¥0</p>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <%= form.submit "確認画面へ", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  // 施設ごとの時間単価をJavaScriptで利用できるようにする
+  const facilityRates = {
+    <% @facilities.each do |facility| %>
+      "<%= facility.id %>": <%= facility.hourly_rate %>,
+    <% end %>
+  };
+</script>

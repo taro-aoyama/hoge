@@ -1,17 +1,31 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyText
-  location: MyString
-  capacity: 1
-  hourly_rate: 1
-  active: false
+meeting_room_a:
+  name: "ミーティングルームA"
+  description: "小規模な会議に適した部屋です。"
+  location: "本社ビル 1階"
+  capacity: 10
+  hourly_rate: 1000
+  active: true
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
 
-two:
-  name: MyString
-  description: MyText
-  location: MyString
-  capacity: 1
-  hourly_rate: 1
+training_room:
+  name: "研修室"
+  description: "大人数での研修に利用できます。"
+  location: "本社ビル 2階"
+  capacity: 50
+  hourly_rate: 5000
+  active: true
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+old_storeroom:
+  name: "旧倉庫"
+  description: "現在は利用されていません。"
+  location: "別館 地下1階"
+  capacity: 100
+  hourly_rate: 100
   active: false
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
