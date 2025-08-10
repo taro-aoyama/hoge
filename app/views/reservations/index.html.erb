@@ -1,0 +1,22 @@
+<h1>抽選履歴</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>施設名</th>
+      <th>利用日時</th>
+      <th>ステータス</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td><%= reservation.facility.name %></td>
+        <td><%= reservation.start_time.strftime("%Y/%m/%d %H:%M") %> - <%= reservation.end_time.strftime("%H:%M") %></td>
+        <td><%= reservation.status_i18n %></td>
+        <td><%= link_to '詳細', reservation_path(reservation), class: 'btn btn-primary' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
