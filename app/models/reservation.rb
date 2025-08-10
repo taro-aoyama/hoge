@@ -4,10 +4,14 @@ class Reservation < ApplicationRecord
 
   # ステータスの定義
   enum status: {
-    pending: 0,     # 承認待ち
-    approved: 1,    # 承認済み
-    rejected: 2,    # 拒否
-    cancelled: 3    # キャンセル
+    pending: 0,         # 承認待ち
+    approved: 1,        # 承認済み
+    rejected: 2,        # 拒否
+    cancelled: 3,       # キャンセル
+    lottery_pending: 4, # 抽選待ち
+    won: 5,             # 当選
+    lost: 6,            # 落選
+    waitlisted: 7       # 補欠
   }
 
   # バリデーション

@@ -1,0 +1,28 @@
+<h1>抽選結果詳細</h1>
+
+<p>
+  <strong>施設名:</strong>
+  <%= @reservation.facility.name %>
+</p>
+
+<p>
+  <strong>利用日時:</strong>
+  <%= @reservation.start_time.strftime("%Y/%m/%d %H:%M") %> - <%= @reservation.end_time.strftime("%H:%M") %>
+</p>
+
+<p>
+  <strong>ステータス:</strong>
+  <%= @reservation.status_i18n %>
+</p>
+
+<% if @reservation.won? %>
+  <p>おめでとうございます！当選しました。</p>
+  <p>以下のボタンから予約を確定または辞退してください。</p>
+  <%= button_to '予約を確定する', confirm_reservation_path(@reservation), method: :patch, class: 'btn btn-success' %>
+  <%= button_to '辞退する', decline_reservation_path(@reservation), method: :patch, class: 'btn btn-danger' %>
+<% elsif @reservation.waitlisted? %>
+  <p>現在補欠です。繰り上げ当選をお待ちください。</p>
+  <p>補欠順位: <%= @reservation.waitlist_rank %></p>
+<% end %>
+
+<%= link_to '履歴一覧に戻る', reservations_path %>
