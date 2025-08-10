@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  facility: one
+  start_time: 2025-08-10 15:06:58
+  end_time: 2025-08-10 15:06:58
+  status: 1
+  purpose: MyText
+  total_fee: 1
+
+two:
+  user: two
+  facility: two
+  start_time: 2025-08-10 15:06:58
+  end_time: 2025-08-10 15:06:58
+  status: 1
+  purpose: MyText
+  total_fee: 1
