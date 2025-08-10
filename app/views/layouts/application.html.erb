@@ -18,6 +18,11 @@
   </head>
 
   <body>
+    <% if user_signed_in? && current_user.system_admin? %>
+      <nav>
+        <%= link_to 'Facility Manager Assignments', admin_facility_managers_path %>
+      </nav>
+    <% end %>
     <%= yield %>
   </body>
 </html>
