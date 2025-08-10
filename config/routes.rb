@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   devise_for :users
-  root to: redirect('/users/sign_in')
+
+  # Set the root path to the home controller's index action.
+  # The `before_action :authenticate_user!` in HomeController will handle
+  # redirecting unauthenticated users to the sign-in page.
+  root "home#index"
 end
