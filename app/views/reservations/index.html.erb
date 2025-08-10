@@ -1,0 +1,80 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-6">予約一覧</h1>
+
+  <%# フィルタリングフォーム %>
+  <%= form_with(url: reservations_path, method: :get, local: true, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4") do |form| %>
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+        <%= form.label :status, "ステータス", class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
+        <%= form.select :status, Reservation.statuses.keys.map { |k| [t("activerecord.attributes.reservation.statuses.#{k}"), k] }, { include_blank: 'すべて' }, class: "block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" %>
+      </div>
+      <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+        <%= form.label :start_date, "開始日", class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
+        <%= form.date_field :start_date, value: params[:start_date], class: "block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" %>
+      </div>
+      <div class="w-full md:w-1/3 px-3">
+        <%= form.label :end_date, "終了日", class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
+        <%= form.date_field :end_date, value: params[:end_date], class: "block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" %>
+      </div>
+    </div>
+    <div class="flex items-center justify-between">
+      <%= form.submit "絞り込み", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <%= link_to "クリア", reservations_path, class: "inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" %>
+    </div>
+  <% end %>
+
+  <%# 予約一覧テーブル %>
+  <div class="bg-white shadow-md rounded my-6">
+    <table class="min-w-full leading-normal">
+      <thead>
+        <tr>
+          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">施設名</th>
+          <% if current_user.can_manage_system? || current_user.can_manage_facilities? %>
+            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">予約者</th>
+          <% end %>
+          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">利用日時</th>
+          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">目的</th>
+          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ステータス</th>
+          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">予約種別</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @reservations.any? %>
+          <% @reservations.each do |reservation| %>
+            <tr>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap"><%= reservation.facility.name %></p>
+              </td>
+              <% if current_user.can_manage_system? || current_user.can_manage_facilities? %>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <p class="text-gray-900 whitespace-no-wrap"><%= reservation.user.email %></p>
+                </td>
+              <% end %>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">
+                  <%= l(reservation.start_time, format: :long) %> - <%= l(reservation.end_time, format: :time_only) %>
+                </p>
+              </td>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap"><%= truncate(reservation.purpose, length: 30) %></p>
+              </td>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                  <span aria-hidden class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                  <span class="relative"><%= t("activerecord.attributes.reservation.statuses.#{reservation.status}") %></span>
+                </span>
+              </td>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap"><%= t("activerecord.attributes.reservation.reservation_types.#{reservation.reservation_type}") %></p>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="6" class="text-center py-10">予約はありません。</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

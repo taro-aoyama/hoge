@@ -10,6 +10,12 @@ class Reservation < ApplicationRecord
     cancelled: 3    # キャンセル
   }
 
+  # 予約種別の定義
+  enum reservation_type: {
+    normal: 0,      # 通常予約
+    lottery: 1      # 抽選予約
+  }
+
   # バリデーション
   validates :start_time, presence: true
   validates :end_time, presence: true

@@ -1,0 +1,23 @@
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      long: "%Y年%m月%d日(%a) %H:%M"
+      short: "%m/%d %H:%M"
+      time_only: "%H:%M"
+
+  activerecord:
+    models:
+      reservation: 予約
+    attributes:
+      reservation:
+        status: ステータス
+        reservation_type: 予約種別
+        statuses:
+          pending: 承認待ち
+          approved: 承認済み
+          rejected: 拒否
+          cancelled: キャンセル
+        reservation_types:
+          normal: 通常予約
+          lottery: 抽選予約

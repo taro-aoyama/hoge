@@ -1,17 +1,15 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+facility1:
+  name: "Community Center Room A"
+  description: "A large room for community gatherings."
+  location: "123 Main St"
+  capacity: 50
+  hourly_rate: 25
+  active: true
 
-one:
-  name: MyString
-  description: MyText
-  location: MyString
-  capacity: 1
-  hourly_rate: 1
-  active: false
-
-two:
-  name: MyString
-  description: MyText
-  location: MyString
-  capacity: 1
-  hourly_rate: 1
-  active: false
+facility2:
+  name: "Library Study Room"
+  description: "A quiet room for studying."
+  location: "456 Oak Ave"
+  capacity: 4
+  hourly_rate: 10
+  active: true
