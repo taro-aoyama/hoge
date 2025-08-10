@@ -1,0 +1,40 @@
+<h1><%= @facility.name %> の予約</h1>
+
+<%= form_with(model: [@facility, @reservation], local: true, data: { controller: "reservation-form", reservation_form_target: "form", action: "change->reservation-form#calculate", reservation_form_hourly_rate_value: @facility.hourly_rate }) do |form| %>
+  <% if @reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+      <ul>
+        <% @reservation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :start_time %>
+    <%= form.datetime_select :start_time, {}, { data: { reservation_form_target: "startTime", action: "change->reservation-form#calculate" } } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_time %>
+    <%= form.datetime_select :end_time, {}, { data: { reservation_form_target: "endTime", action: "change->reservation-form#calculate" } } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :purpose %>
+    <%= form.text_area :purpose %>
+  </div>
+
+  <div data-reservation-form-target="totalFee">
+    合計料金: 0円
+  </div>
+
+  <div class="actions">
+    <%= form.submit '予約を確定する' %>
+  </div>
+<% end %>
+
+<%= link_to '施設一覧に戻る', facilities_path %>
