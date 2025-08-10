@@ -1,0 +1,19 @@
+<h1>Facility Managers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @facility_managers.each do |facility_manager| %>
+      <tr>
+        <td><%= facility_manager.email %></td>
+        <td><%= link_to 'Manage Facilities', admin_facility_manager_path(facility_manager) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

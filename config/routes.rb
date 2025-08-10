@@ -5,4 +5,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: redirect('/users/sign_in')
+
+  namespace :admin do
+    resources :facility_managers, only: [:index, :show, :edit, :update]
+  end
 end

@@ -1,0 +1,11 @@
+<h1><%= @facility_manager.email %></h1>
+
+<h2>Managed Facilities</h2>
+<ul>
+  <% @facility_manager.managed_facilities.each do |facility| %>
+    <li><%= facility.name %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit Assignments', edit_admin_facility_manager_path(@facility_manager) %> |
+<%= link_to 'Back to List', admin_facility_managers_path %>
